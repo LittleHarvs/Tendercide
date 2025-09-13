@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <title>LITTLE HARVS</title>
 
-  <!-- Google Font -->
+  <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;700&display=swap" rel="stylesheet" />
 
-  <!-- Mobile meta -->
+  <!-- Mobile Meta -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
@@ -24,20 +24,13 @@
       width: 100%;
       min-height: 100vh;
       scroll-behavior: smooth;
+      overflow-x: hidden;
     }
 
     body {
-      <div class="scrolling-background">
-  <div class="scroll-line left">LITTLEHARVS LITTLEHARVS LITTLEHARVS LITTLEHARVS LITTLEHARVS LITTLEHARVS</div>
-  <div class="scroll-line right">LITTLEHARVS LITTLEHARVS LITTLEHARVS LITTLEHARVS LITTLEHARVS LITTLEHARVS</div>
-  <div class="scroll-line left">LITTLEHARVS LITTLEHARVS LITTLEHARVS LITTLEHARVS LITTLEHARVS LITTLEHARVS</div>
-  <div class="scroll-line right">LITTLEHARVS LITTLEHARVS LITTLEHARVS LITTLEHARVS LITTLEHARVS LITTLEHARVS</div>
-  <div class="scroll-line left">LITTLEHARVS LITTLEHARVS LITTLEHARVS LITTLEHARVS LITTLEHARVS LITTLEHARVS</div>
-  <div class="scroll-line right">LITTLEHARVS LITTLEHARVS LITTLEHARVS LITTLEHARVS LITTLEHARVS LITTLEHARVS</div>
-</div>
-
       padding: 60px 30px;
-      display: block;
+      position: relative;
+      z-index: 1;
     }
 
     h1 {
@@ -109,6 +102,37 @@
       user-select: none;
     }
 
+    section {
+      margin-bottom: 60px;
+    }
+
+    form {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    input[type="email"] {
+      padding: 10px;
+      font-size: 1rem;
+      width: 250px;
+      max-width: 100%;
+      border-radius: 5px;
+      border: none;
+    }
+
+    button[type="submit"] {
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #ff4c4c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
     /* Floating geometric shapes */
     .shape {
       position: fixed;
@@ -147,14 +171,8 @@
     }
 
     @keyframes float {
-      0% {
-        transform: translateY(0) translateX(0);
-        opacity: 0.1;
-      }
-      100% {
-        transform: translateY(-20px) translateX(10px);
-        opacity: 0.2;
-      }
+      0% { transform: translateY(0) translateX(0); opacity: 0.1; }
+      100% { transform: translateY(-20px) translateX(10px); opacity: 0.2; }
     }
 
     .fade-in {
@@ -164,40 +182,7 @@
     }
 
     @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
-
-    section {
-      margin-bottom: 60px;
-    }
-
-    form {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    input[type="email"] {
-      padding: 10px;
-      font-size: 1rem;
-      width: 250px;
-      max-width: 100%;
-      border-radius: 5px;
-      border: none;
-    }
-
-    button[type="submit"] {
-      padding: 10px 20px;
-      font-size: 1rem;
-      background-color: #ff4c4c;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
+      to { opacity: 1; }
     }
 
     @media (max-width: 700px) {
@@ -225,98 +210,72 @@
         max-width: 100%;
       }
     }
-    /* Scrolling Background Text */
-.scrolling-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  z-index: -2;
-  pointer-events: none;
-}
 
-.scroll-line {
-  white-space: nowrap;
-  font-size: 4vw;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: rgba(255, 76, 76, 0.05); /* Very faint red */
-  letter-spacing: 0.1em;
-  position: absolute;
-  width: 200%;
-  animation-duration: 30s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-  user-select: none;
-  font-family: 'Inter', sans-serif;
-}
+    /* 🌀 SCROLLING BACKGROUND TEXT */
+    .scrolling-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      z-index: -2;
+      pointer-events: none;
+    }
 
-/* Position each line vertically spaced */
-.scroll-line:nth-child(1) { top: 5vh; animation-name: scroll-left; }
-.scroll-line:nth-child(2) { top: 15vh; animation-name: scroll-right; }
-.scroll-line:nth-child(3) { top: 25vh; animation-name: scroll-left; }
-.scroll-line:nth-child(4) { top: 35vh; animation-name: scroll-right; }
-.scroll-line:nth-child(5) { top: 45vh; animation-name: scroll-left; }
-.scroll-line:nth-child(6) { top: 55vh; animation-name: scroll-right; }
+    .scroll-line {
+      white-space: nowrap;
+      font-size: 4vw;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: rgba(255, 76, 76, 0.05);
+      letter-spacing: 0.1em;
+      position: absolute;
+      width: 200%;
+      animation-duration: 30s;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+      user-select: none;
+      font-family: 'Inter', sans-serif;
+      filter: blur(1px);
+    }
 
-@keyframes scroll-left {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
+    .scroll-line:nth-child(1) { top: 5vh; animation-name: scroll-left; }
+    .scroll-line:nth-child(2) { top: 15vh; animation-name: scroll-right; }
+    .scroll-line:nth-child(3) { top: 25vh; animation-name: scroll-left; }
+    .scroll-line:nth-child(4) { top: 35vh; animation-name: scroll-right; }
+    .scroll-line:nth-child(5) { top: 45vh; animation-name: scroll-left; }
+    .scroll-line:nth-child(6) { top: 55vh; animation-name: scroll-right; }
 
-@keyframes scroll-right {
-  0% { transform: translateX(-50%); }
-  100% { transform: translateX(0); }
-}
+    @keyframes scroll-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
 
+    @keyframes scroll-right {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
   </style>
 </head>
+
 <body>
+  <!-- 🌀 Scrolling background -->
+  <div class="scrolling-background">
+    <div class="scroll-line left">LITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVS</div>
+    <div class="scroll-line left">LITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVS</div>
+    <div class="scroll-line left">LITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVS</div>
+    <div class="scroll-line left">LITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVS</div>
+    <div class="scroll-line left">LITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVS</div>
+    <div class="scroll-line left">LITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVS</div>
+    <div class="scroll-line left">LITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVS</div>
+    <div class="scroll-line left">LITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVS</div>
+    <div class="scroll-line left">LITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVS</div>
+    <div class="scroll-line left">LITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVS</div>
+  </div>
 
-  <div class="shape small"></div>
-  <div class="shape medium"></div>
-  <div class="shape large"></div>
+  <!-- Floating shapes -->
+  <div class="shape small"></
 
-  <h1 class="fade-in">LITTLE HARVS</h1>
-
-  <p class="fade-in" style="animation-delay: 0.6s;">
-    The softest of launches. The hardest of slaps.
-  </p>
-
-  <div class="divider fade-in" style="animation-delay: 0.9s;"></div>
-
-  <section class="fade-in" style="animation-delay: 1.2s;">
-    <img src="dioscuri.jpg" alt="My uploaded image" />
-  </section>
-
-  <div class="divider fade-in" style="animation-delay: 1.5s;"></div>
-
-  <section class="fade-in" style="animation-delay: 1.8s; width: 100%; max-width: 600px; margin: 0 auto;">
-    <h2>TENDERCIDE</h2>
-    <audio controls>
-      <source src="tendercide.m4a" type="audio/mp4" />
-      Your browser does not support the audio element.
-    </audio>
-  </section>
-
-  <div class="divider fade-in" style="animation-delay: 2.0s;"></div>
-
-  <section class="fade-in" style="animation-delay: 2.1s;">
-    <h2>JOIN THE MAILING LIST</h2>
-    <form action="https://formsubmit.co/Harveyfalla.music@gmail.com" method="POST">
-      <input type="email" name="email" placeholder="Enter your email" required />
-      <button type="submit">Subscribe</button>
-
-      <!-- Anti-spam honeypot field -->
-      <input type="text" name="_honey" style="display:none">
-      <!-- Disable CAPTCHA -->
-      <input type="hidden" name="_captcha" value="false">
-    </form>
-  </section>
-
-</body>
-</html>
 
 
