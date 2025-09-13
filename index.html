@@ -164,6 +164,33 @@
       margin-bottom: 60px;
     }
 
+    form {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    input[type="email"] {
+      padding: 10px;
+      font-size: 1rem;
+      width: 250px;
+      max-width: 100%;
+      border-radius: 5px;
+      border: none;
+    }
+
+    button[type="submit"] {
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #ff4c4c;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
     @media (max-width: 700px) {
       body {
         padding: 40px 15px;
@@ -211,7 +238,7 @@
 
   <div class="divider fade-in" style="animation-delay: 1.5s;"></div>
 
-  <section class="fade-in" style="animation-delay: 1.8s; width: 100%; max-width: 600px;">
+  <section class="fade-in" style="animation-delay: 1.8s; width: 100%; max-width: 600px; margin: 0 auto;">
     <h2>TENDERCIDE</h2>
     <audio controls>
       <source src="tendercide.m4a" type="audio/mp4" />
@@ -219,6 +246,22 @@
     </audio>
   </section>
 
+  <div class="divider fade-in" style="animation-delay: 2.0s;"></div>
+
+  <section class="fade-in" style="animation-delay: 2.1s;">
+    <h2>JOIN THE MAILING LIST</h2>
+    <form action="https://formsubmit.co/Harveyfalla.music@gmail.com" method="POST">
+      <input type="email" name="email" placeholder="Enter your email" required />
+      <button type="submit">Subscribe</button>
+
+      <!-- Anti-spam honeypot field -->
+      <input type="text" name="_honey" style="display:none">
+      <!-- Disable CAPTCHA -->
+      <input type="hidden" name="_captcha" value="false">
+    </form>
+  </section>
+
 </body>
 </html>
+
 
