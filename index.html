@@ -3,42 +3,45 @@
 <head>
   <meta charset="UTF-8" />
   <title>LITTLE HARVS</title>
-  
-  <!-- Inter font from Google Fonts -->
+
+  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;700&display=swap" rel="stylesheet" />
-  
+
+  <!-- Mobile meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <style>
-    /* Reset & base */
     * {
       box-sizing: border-box;
     }
-    
-    body {
+
+    html, body {
       margin: 0;
-      padding: 60px 30px;
+      padding: 0;
       background: linear-gradient(135deg, #000000, #0a0a0a);
       font-family: 'Inter', sans-serif;
       color: #e6e6e6;
-      overflow-x: hidden;
+      width: 100%;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 40px;
-      position: relative;
+      scroll-behavior: smooth;
     }
-    
+
+    body {
+      padding: 60px 30px;
+      display: block;
+    }
+
     h1 {
       font-weight: 700;
       font-size: 3.6rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      margin: 0;
-      color: #ff4c4c; /* Warp red accent */
+      margin: 0 0 20px;
+      color: #ff4c4c;
+      text-align: center;
       user-select: none;
     }
-    
+
     p {
       font-weight: 300;
       font-size: 1.25rem;
@@ -46,20 +49,21 @@
       line-height: 1.6;
       letter-spacing: 0.05em;
       color: #ccc;
-      margin: 0 auto;
+      margin: 0 auto 40px;
       text-align: center;
       user-select: none;
     }
-    
+
     h2 {
       font-weight: 700;
       font-size: 1.8rem;
       letter-spacing: 0.15em;
       margin-bottom: 20px;
       color: #ff4c4c;
+      text-align: center;
       user-select: none;
     }
-    
+
     img {
       max-width: 600px;
       width: 100%;
@@ -67,32 +71,35 @@
       box-shadow: 0 10px 30px rgba(255, 76, 76, 0.4);
       transition: transform 0.4s ease;
       cursor: pointer;
+      display: block;
+      margin: 0 auto;
       user-select: none;
     }
-    
+
     img:hover {
       transform: scale(1.05) rotate(1deg);
       box-shadow: 0 20px 40px rgba(255, 76, 76, 0.7);
     }
-    
+
     audio {
       width: 100%;
       max-width: 600px;
+      margin: 0 auto;
+      display: block;
       outline-color: #ff4c4c;
       filter: drop-shadow(0 0 2px #ff4c4c);
       user-select: none;
     }
-    
-    /* Divider line */
+
     .divider {
       width: 80%;
       max-width: 700px;
       border-top: 1px solid #ff4c4c;
-      margin: 40px auto;
+      margin: 60px auto;
       opacity: 0.3;
       user-select: none;
     }
-    
+
     /* Floating geometric shapes */
     .shape {
       position: fixed;
@@ -103,8 +110,9 @@
       pointer-events: none;
       user-select: none;
       mix-blend-mode: screen;
+      z-index: 0;
     }
-    
+
     .shape.small {
       width: 40px;
       height: 40px;
@@ -112,7 +120,7 @@
       left: 15vw;
       animation-delay: 0s;
     }
-    
+
     .shape.medium {
       width: 80px;
       height: 80px;
@@ -120,7 +128,7 @@
       right: 20vw;
       animation-delay: 4s;
     }
-    
+
     .shape.large {
       width: 120px;
       height: 120px;
@@ -128,7 +136,7 @@
       left: 40vw;
       animation-delay: 2s;
     }
-    
+
     @keyframes float {
       0% {
         transform: translateY(0) translateX(0);
@@ -139,30 +147,44 @@
         opacity: 0.2;
       }
     }
-    
-    /* Fade in animation */
+
     .fade-in {
       opacity: 0;
       animation: fadeIn 1.2s ease forwards;
       animation-delay: 0.3s;
     }
-    
+
     @keyframes fadeIn {
       to {
         opacity: 1;
       }
     }
-    
-    /* Responsive tweaks */
+
+    section {
+      margin-bottom: 60px;
+    }
+
     @media (max-width: 700px) {
       body {
         padding: 40px 15px;
       }
-      
+
       h1 {
-        font-size: 2.8rem;
+        font-size: 2.6rem;
       }
-      
+
+      h2 {
+        font-size: 1.4rem;
+      }
+
+      p {
+        font-size: 1.1rem;
+      }
+
+      .divider {
+        margin: 40px auto;
+      }
+
       img, audio {
         max-width: 100%;
       }
@@ -170,26 +192,25 @@
   </style>
 </head>
 <body>
-  
+
   <div class="shape small"></div>
   <div class="shape medium"></div>
   <div class="shape large"></div>
-  
+
   <h1 class="fade-in">LITTLE HARVS</h1>
-  
+
   <p class="fade-in" style="animation-delay: 0.6s;">
     The softest of launches. The hardest of slaps.
   </p>
-  
+
   <div class="divider fade-in" style="animation-delay: 0.9s;"></div>
-  
+
   <section class="fade-in" style="animation-delay: 1.2s;">
-  
     <img src="dioscuri.jpg" alt="My uploaded image" />
   </section>
-  
+
   <div class="divider fade-in" style="animation-delay: 1.5s;"></div>
-  
+
   <section class="fade-in" style="animation-delay: 1.8s; width: 100%; max-width: 600px;">
     <h2>TENDERCIDE</h2>
     <audio controls>
@@ -197,7 +218,7 @@
       Your browser does not support the audio element.
     </audio>
   </section>
-  
+
 </body>
 </html>
 
