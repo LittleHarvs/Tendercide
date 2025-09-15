@@ -261,24 +261,21 @@
       100% { transform: translateX(0); }
     }
     #play-button {
-  background-color: #ff4c4c;
-  color: white;
-  font-size: 2rem;
+  background: none;
   border: none;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
+  font-size: 3rem;
+  color: #ff4c4c;
   cursor: pointer;
-  box-shadow: 0 4px 12px rgba(255, 76, 76, 0.5);
-  transition: transform 0.2s ease;
+  padding: 0;
+  line-height: 1;
 }
 
 #play-button:hover {
-  transform: scale(1.1);
+  color: #ff6666;
 }
 
-#play-button.playing {
-  background-color: #e60000;
+#play-button:focus {
+  outline: none;
 }
   </style>
 </head>
