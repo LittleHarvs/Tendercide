@@ -5,9 +5,10 @@
   <title>LITTLE HARVS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Inter font from Google Fonts -->
+  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;700&display=swap" rel="stylesheet" />
-  
+
+  <!-- Model Viewer -->
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
   <style>
@@ -16,27 +17,20 @@
     }
 
     body {
-  margin: 0;
-  padding: 60px 30px;
-  background: url('dioscuri.jpg') no-repeat center center fixed;
-  background-size: cover;
-  font-family: 'Inter', sans-serif;
-  color: #e6e6e6;
-  overflow-x: hidden;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  gap: 40px;
-  position: relative;
-}
-
-
-    body {
+      margin: 0;
       padding: 60px 30px;
+      background: url('dioscuri.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Inter', sans-serif;
+      color: #e6e6e6;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 40px;
       position: relative;
-      z-index: 1;
     }
 
     h1 {
@@ -47,17 +41,7 @@
       margin: 0 0 20px;
       color: white;
       text-align: center;
-    }
-
-    p {
-      font-weight: 300;
-      font-size: 1.25rem;
-      max-width: 700px;
-      line-height: 1.6;
-      letter-spacing: 0.05em;
-      color: #ccc;
-      margin: 0 auto 40px;
-      text-align: center;
+      line-height: 1.2;
     }
 
     h2 {
@@ -67,31 +51,6 @@
       margin-bottom: 20px;
       color: #ff4c4c;
       text-align: center;
-    }
-
-    img {
-      max-width: 600px;
-      width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(255, 76, 76, 0.4);
-      transition: transform 0.4s ease;
-      display: block;
-      margin: 0 auto;
-    }
- 
-
-    img:hover {
-      transform: scale(1.05) rotate(1deg);
-      box-shadow: 0 20px 40px rgba(255, 76, 76, 0.7);
-    }
-
-    audio {
-      width: 100%;
-      max-width: 600px;
-      margin: 0 auto;
-      display: block;
-      outline-color: #ff4c4c;
-      filter: drop-shadow(0 0 2px #ff4c4c);
     }
 
     .divider {
@@ -106,111 +65,44 @@
       margin-bottom: 60px;
     }
 
-    form {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    input[type="email"] {
-      padding: 10px;
-      font-size: 1rem;
-      width: 250px;
-      max-width: 100%;
-      border-radius: 5px;
+    /* Audio button styling */
+    #play-button {
+      background: none;
       border: none;
-    }
-
-    button[type="submit"] {
-      padding: 10px 20px;
-      font-size: 1rem;
-      background-color: #ff4c4c;
-      color: white;
-      border: none;
-      border-radius: 5px;
+      font-size: 3rem;
+      color: #ff4c4c;
       cursor: pointer;
+      padding: 0;
+      line-height: 1;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
     }
 
-    .shape {
-      position: fixed;
-      border: 2px solid #ff4c4c;
-      border-radius: 50%;
-      opacity: 0.1;
-      animation: float 8s ease-in-out infinite alternate;
-      pointer-events: none;
-      user-select: none;
-      mix-blend-mode: screen;
-      z-index: 0;
+    #play-button:hover {
+      color: #ff6666;
     }
 
-    .shape.small {
-      width: 40px;
-      height: 40px;
-      top: 10vh;
-      left: 15vw;
-      animation-delay: 0s;
+    #play-button:focus {
+      outline: none;
     }
 
-    .shape.medium {
-      width: 80px;
-      height: 80px;
-      top: 50vh;
-      right: 20vw;
-      animation-delay: 4s;
+    /* Model Viewer container */
+    .model-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
     }
 
-    .shape.large {
-      width: 120px;
-      height: 120px;
-      bottom: 15vh;
-      left: 40vw;
-      animation-delay: 2s;
+    model-viewer {
+      width: 100%;
+      height: 100%;
+      display: block;
     }
 
-    @keyframes float {
-      0% { transform: translateY(0) translateX(0); opacity: 0.1; }
-      100% { transform: translateY(-20px) translateX(10px); opacity: 0.2; }
-    }
-
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-
-    .fade-in {
-      opacity: 0;
-      animation: fadeIn 1.2s ease forwards;
-      animation-delay: 0.3s;
-    }
-
-    @media (max-width: 700px) {
-      body {
-        padding: 40px 15px;
-      }
-
-      h1 {
-        font-size: 2.6rem;
-      }
-
-      h2 {
-        font-size: 1.4rem;
-      }
-
-      p {
-        font-size: 1.1rem;
-      }
-
-      .divider {
-        margin: 40px auto;
-      }
-
-      img, audio {
-        max-width: 100%;
-      }
-    }
-
-    /* 🔁 SCROLLING BACKGROUND TEXT */
+    /* Scroll background */
     .scrolling-background {
       position: fixed;
       top: 0;
@@ -241,15 +133,8 @@
       mix-blend-mode: lighten;
     }
 
-    .scroll-line:nth-child(1) { top: 15vh; animation-name: scroll-right; }
-    .scroll-line:nth-child(2) { top: 25vh; animation-name: scroll-left; }
-    .scroll-line:nth-child(3) { top: 35vh; animation-name: scroll-right; }
-    .scroll-line:nth-child(4) { top: 45vh; animation-name: scroll-left; }
-    .scroll-line:nth-child(5) { top: 55vh; animation-name: scroll-right; }
-    .scroll-line:nth-child(6) { top: 65vh; animation-name: scroll-left; }
-    .scroll-line:nth-child(7) { top: 75vh; animation-name: scroll-right; }
-    .scroll-line:nth-child(8) { top: 85vh; animation-name: scroll-left; }
-    .scroll-line:nth-child(9) { top: 95vh; animation-name: scroll-right; }
+    .scroll-line:nth-child(odd) { animation-name: scroll-right; }
+    .scroll-line:nth-child(even) { animation-name: scroll-left; }
 
     @keyframes scroll-left {
       0% { transform: translateX(0); }
@@ -260,90 +145,88 @@
       0% { transform: translateX(-50%); }
       100% { transform: translateX(0); }
     }
-    #play-button {
-  background: none;
-  border: none;
-  font-size: 3rem;
-  color: #ff4c4c;
-  cursor: pointer;
-  padding: 0;
-  line-height: 1;
-}
 
-#play-button:hover {
-  color: #ff6666;
-}
+    /* Splash Screen */
+    #splash-screen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      animation: fadeOut 2s ease forwards;
+      animation-delay: 1.8s;
+    }
 
-#play-button:focus {
-  outline: none;
-}
+    @keyframes glow {
+      0%, 100% { filter: drop-shadow(0 0 5px #ff4c4c); }
+      50% { filter: drop-shadow(0 0 20px #ff4c4c); }
+    }
+
+    #splash-logo {
+      width: 180px;
+      height: 180px;
+      background: url('logo.svg') no-repeat center center;
+      background-size: contain;
+      animation: glow 2s ease-in-out infinite;
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
   </style>
 </head>
 
 <body>
-  <!-- 🌀 Scrolling background -->
-  <div class="scrolling-background">
-    <div class="scroll-line right">LITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVS</div>
-    <div class="scroll-line left">LITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVS</div>
-    <div class="scroll-line right">LITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVS</div>
-    <div class="scroll-line left">LITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVS</div>
-    <div class="scroll-line right">LITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVS</div>
-    <div class="scroll-line left">LITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVS</div>
-    <div class="scroll-line right">LITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVS</div>
-    <div class="scroll-line left">LITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVS</div>
-    <div class="scroll-line right">LITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVS</div>
-    <div class="scroll-line left">LITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVS</div>
-    <div class="scroll-line right">LITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVS</div>
-    <div class="scroll-line left">LITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVS</div>
-    <div class="scroll-line right">LITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVS</div>
-    <div class="scroll-line left">LITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVSLITTLEHARVS</div>
+
+  <!-- Splash Loading Screen -->
+  <div id="splash-screen">
+    <div id="splash-logo"></div>
   </div>
 
-  <!-- Floating shapes -->
-  <div class="shape small"></div>
-  <div class="shape medium"></div>
-  <div class="shape large"></div>
+  <!-- Scrolling background -->
+  <div class="scrolling-background">
+    <div class="scroll-line">LITTLEHARVSLITTLEHARVSLITTLEHARVS</div>
+    <div class="scroll-line">LITTLEHARVSLITTLEHARVSLITTLEHARVS</div>
+    <div class="scroll-line">LITTLEHARVSLITTLEHARVSLITTLEHARVS</div>
+    <div class="scroll-line">LITTLEHARVSLITTLEHARVSLITTLEHARVS</div>
+    <div class="scroll-line">LITTLEHARVSLITTLEHARVSLITTLEHARVS</div>
+  </div>
 
+  <!-- Title -->
   <h1 class="fade-in">The softest of launches.<br>The hardest of slaps.</h1> 
 
-  <!-- <p class="fade-in" style="animation-delay: 0.6s;">
-    The softest of launches. The hardest of slaps.
-  </p>-->
-  
- <model-viewer
-  src="logo01.glb"
-  alt="3D Logo"
-  auto-rotate
-  camera-controls
-  interaction-prompt="none"
-  camera-orbit="0deg 90deg 100m"
-  field-of-view="35deg"
- exposure="1" disable-zoom
-   style="width: 100vw; height: 100vh; display: block; margin: 0 auto;"
-  onmouseover="this.cameraOrbit = '45deg 90deg 100m';"
-  onmouseout="this.cameraOrbit = '0deg 90deg 100m';"
-></model-viewer>
-
-  
-  <!-- <div class="divider fade-in" style="animation-delay: 0.9s;"></div>
-
-  <section class="fade-in" style="animation-delay: 1.2s;">
-    <img src="dioscuri.jpg" alt="My uploaded image" />
-  </section> -->
-
-  <div class="divider fade-in" style="animation-delay: 1.5s;"></div>
-
-  <section class="fade-in" style="animation-delay: 1.8s; width: 100%; max-width: 600px; margin: 0 auto;">
-    <h2>TENDERCIDE</h2>
+  <!-- Model and Play Button -->
+  <div class="model-container">
     <button id="play-button">►</button>
-<audio id="custom-audio" preload="auto">
-  <source src="tendercide.m4a" type="audio/mp4" />
-  Your browser does not support the audio element.
-</audio>
-  </section>
+    <model-viewer
+      src="logo01.glb"
+      alt="3D Logo"
+      auto-rotate
+      camera-controls
+      interaction-prompt="none"
+      camera-orbit="0deg 90deg 100m"
+      field-of-view="35deg"
+      exposure="1"
+      disable-zoom
+      onmouseover="this.cameraOrbit = '45deg 90deg 100m';"
+      onmouseout="this.cameraOrbit = '0deg 90deg 100m';">
+    </model-viewer>
+  </div>
 
-  <div class="divider fade-in" style="animation-delay: 2.0s;"></div>
+  <!-- Audio -->
+  <audio id="custom-audio" preload="auto">
+    <source src="tendercide.m4a" type="audio/mp4" />
+    Your browser does not support the audio element.
+  </audio>
 
+  <!-- Divider -->
+  <div class="divider fade-in"></div>
+
+  <!-- Mailing List -->
   <section class="fade-in" style="animation-delay: 2.1s;">
     <h2>JOIN THE MAILING LIST</h2>
     <form action="https://formsubmit.co/Harveyfalla.music@gmail.com" method="POST">
@@ -353,32 +236,30 @@
       <input type="hidden" name="_captcha" value="false">
     </form>
   </section>
+
+  <!-- JS for play button -->
   <script>
-  const playButton = document.getElementById('play-button');
-  const audio = document.getElementById('custom-audio');
+    const playButton = document.getElementById('play-button');
+    const audio = document.getElementById('custom-audio');
 
-  playButton.addEventListener('click', () => {
-    if (audio.paused) {
-      audio.play();
-      playButton.textContent = '❚❚'; // pause icon
-      playButton.classList.add('playing');
-    } else {
-      audio.pause();
-      playButton.textContent = '►'; // play icon
-      playButton.classList.remove('playing');
-    }
-  });
+    playButton.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        playButton.textContent = '❚❚'; // pause icon
+      } else {
+        audio.pause();
+        playButton.textContent = '►'; // play icon
+      }
+    });
 
-  // Optional: revert button when audio ends
-  audio.addEventListener('ended', () => {
-    playButton.textContent = '►';
-    playButton.classList.remove('playing');
-  });
-</script>
-
+    audio.addEventListener('ended', () => {
+      playButton.textContent = '►';
+    });
+  </script>
 
 </body>
 </html>
+
 
 
 
