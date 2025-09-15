@@ -256,6 +256,26 @@
       0% { transform: translateX(-50%); }
       100% { transform: translateX(0); }
     }
+    #play-button {
+  background-color: #ff4c4c;
+  color: white;
+  font-size: 2rem;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(255, 76, 76, 0.5);
+  transition: transform 0.2s ease;
+}
+
+#play-button:hover {
+  transform: scale(1.1);
+}
+
+#play-button.playing {
+  background-color: #e60000;
+}
   </style>
 </head>
 
@@ -314,10 +334,11 @@
 
   <section class="fade-in" style="animation-delay: 1.8s; width: 100%; max-width: 600px; margin: 0 auto;">
     <h2>TENDERCIDE</h2>
-    <audio controls>
-      <source src="tendercide.m4a" type="audio/mp4" />
-      Your browser does not support the audio element.
-    </audio>
+    <button id="play-button">►</button>
+<audio id="custom-audio" preload="auto">
+  <source src="tendercide.m4a" type="audio/mp4" />
+  Your browser does not support the audio element.
+</audio>
   </section>
 
   <div class="divider fade-in" style="animation-delay: 2.0s;"></div>
@@ -331,6 +352,29 @@
       <input type="hidden" name="_captcha" value="false">
     </form>
   </section>
+  <script>
+  const playButton = document.getElementById('play-button');
+  const audio = document.getElementById('custom-audio');
+
+  playButton.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.play();
+      playButton.textContent = '❚❚'; // pause icon
+      playButton.classList.add('playing');
+    } else {
+      audio.pause();
+      playButton.textContent = '►'; // play icon
+      playButton.classList.remove('playing');
+    }
+  });
+
+  // Optional: revert button when audio ends
+  audio.addEventListener('ended', () => {
+    playButton.textContent = '►';
+    playButton.classList.remove('playing');
+  });
+</script>
+
 
 </body>
 </html>
