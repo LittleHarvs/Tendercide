@@ -19,7 +19,8 @@
     body {
       margin: 0;
       padding: 60px 30px;
-      background: url('dioscuri.jpg') no-repeat center center fixed;
+      background: white; 
+      <!--  url('dioscuri.jpg') no-repeat center center fixed;-->
       background-size: cover;
       font-family: 'Inter', sans-serif;
       color: #e6e6e6;
@@ -39,7 +40,7 @@
       letter-spacing: 0.2em;
       text-transform: uppercase;
       margin: 0 0 20px;
-      color: white;
+      color: #ff4c4c;
       text-align: center;
       line-height: 1.2;
     }
@@ -145,47 +146,10 @@
       0% { transform: translateX(-50%); }
       100% { transform: translateX(0); }
     }
-
-    /* Splash Screen */
-    #splash-screen {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      animation: fadeOut 2s ease forwards;
-      animation-delay: 1.8s;
-    }
-
-    @keyframes glow {
-      0%, 100% { filter: drop-shadow(0 0 5px #ff4c4c); }
-      50% { filter: drop-shadow(0 0 20px #ff4c4c); }
-    }
-
-    #splash-logo {
-      width: 180px;
-      height: 180px;
-      background: url('logo.svg') no-repeat center center;
-      background-size: contain;
-      animation: glow 2s ease-in-out infinite;
-    }
-
-    @keyframes fadeOut {
-      to { opacity: 0; visibility: hidden; }
-    }
   </style>
 </head>
 
 <body>
-
-  <!-- Splash Loading Screen -->
-  <div id="splash-screen">
-    <div id="splash-logo"></div>
-  </div>
 
   <!-- Scrolling background -->
   <div class="scrolling-background">
@@ -197,7 +161,7 @@
   </div>
 
   <!-- Title -->
-  <h1 class="fade-in">The softest of launches.<br>The hardest of slaps.</h1> 
+  <h1>The softest of launches.<br>The hardest of slaps.</h1> 
 
   <!-- Model and Play Button -->
   <div class="model-container">
@@ -224,10 +188,10 @@
   </audio>
 
   <!-- Divider -->
-  <div class="divider fade-in"></div>
+  <div class="divider"></div>
 
   <!-- Mailing List -->
-  <section class="fade-in" style="animation-delay: 2.1s;">
+  <section>
     <h2>JOIN THE MAILING LIST</h2>
     <form action="https://formsubmit.co/Harveyfalla.music@gmail.com" method="POST">
       <input type="email" name="email" placeholder="Enter your email" required />
@@ -259,6 +223,7 @@
 
 </body>
 </html>
+
 
 
 
