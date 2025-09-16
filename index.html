@@ -197,9 +197,9 @@
   <div class="model-container">
     <button id="play-button">►</button>
     <model-viewer
+      id="logo-model"
       src="logo01.glb"
       alt="3D Logo"
-      auto-rotate
       rotation-per-second="135deg"
       camera-controls
       interaction-prompt="none"
@@ -234,23 +234,29 @@
 
   <!-- JS for play button -->
   <script>
-    const playButton = document.getElementById('play-button');
-    const audio = document.getElementById('custom-audio');
+  const playButton = document.getElementById('play-button');
+  const audio = document.getElementById('custom-audio');
+  const modelViewer = document.getElementById('logo-model');
 
-    playButton.addEventListener('click', () => {
-      if (audio.paused) {
-        audio.play();
-        playButton.textContent = '❚❚'; // pause icon
-      } else {
-        audio.pause();
-        playButton.textContent = '►'; // play icon
-      }
-    });
+  playButton.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.play();
+      playButton.textContent = '❚❚'; // pause icon
+      modelViewer.setAttribute('auto-rotate', ''); // ✅ enable autorotate
+    } else {
+      audio.pause();
+      playButton.textContent = '►'; // play icon
+      modelViewer.removeAttribute('auto-rotate'); // ✅ disable autorotate
+    }
+  });
 
-    audio.addEventListener('ended', () => {
-      playButton.textContent = '►';
-    });
-  </script>
+  // Revert when audio ends
+  audio.addEventListener('ended', () => {
+    playButton.textContent = '►';
+    modelViewer.removeAttribute('auto-rotate');
+  });
+</script>
+
 
 </body>
 </html>
