@@ -201,9 +201,9 @@
       src="logo01.glb"
       alt="3D Logo"
       rotation-per-second="135deg"
-      /* camera-controls */
+      camera-controls 
       interaction-prompt="none"
-      camera-orbit="0deg 90deg 100m"
+      camera-orbit="20deg 90deg 100m"
       field-of-view="35deg"
       exposure="1"
       disable-zoom
@@ -254,6 +254,21 @@
   audio.addEventListener('ended', () => {
     playButton.textContent = '►';
     modelViewer.removeAttribute('auto-rotate');
+  });
+
+    const modelViewer = document.getElementById('logo-model');
+
+  let resetTimeout;
+
+  // Triggered when user starts interacting
+  modelViewer.addEventListener('camera-change', () => {
+    // Clear any previous timeout
+    clearTimeout(resetTimeout);
+
+    // Set timeout to reset camera after 2 seconds of no interaction
+    resetTimeout = setTimeout(() => {
+      modelViewer.cameraOrbit = '0deg 90deg 100m'; // Replace with your default orbit
+    }, 2000); // 2000ms = 2 seconds
   });
 </script>
 
