@@ -68,19 +68,21 @@
 
     /* Audio button styling */
     #play-button {
-      background: none;
-      border: none;
-      font-size: 3rem;
-      color: #ff4c4c;
-      cursor: pointer;
-      padding: 0;
-      line-height: 1;
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 10;
-    }
+  background: none;
+  border: none;
+  font-size: 3rem;
+  color: #ff4c4c;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference; /* Or try: lighten, overlay, difference, etc. */
+  z-index: 10;
+  pointer-events: auto;
+}
 
     #play-button:hover {
       color: #ff6666;
