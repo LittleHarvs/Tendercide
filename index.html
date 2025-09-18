@@ -253,26 +253,22 @@
   const audio = document.getElementById('custom-audio');
   const modelViewer = document.getElementById('logo-model');
 
- playButton.addEventListener('click', () => {
+playButton.addEventListener('click', () => {
   if (audio.paused) {
-    audio.play().then(() => {
-      playButton.textContent = '❚❚';
+    audio.play(); // No catch block
+    playButton.textContent = '❚❚';
 
-      // Enable autorotate
-      modelViewer.setAttribute('auto-rotate', '');
-      modelViewer.setAttribute('rotation-per-second', '90deg');
+    // Enable autorotate
+    modelViewer.setAttribute('auto-rotate', '');
+    modelViewer.setAttribute('rotation-per-second', '90deg');
 
-      // Nudge camera to force immediate change
-      const orbit = modelViewer.getCameraOrbit();
-      modelViewer.cameraOrbit = `${orbit.theta + 0.001}rad ${orbit.phi}rad ${orbit.radius}m`;
+    // Nudge camera slightly to force re-render
+    const orbit = modelViewer.getCameraOrbit();
+    modelViewer.cameraOrbit = `${orbit.theta + 0.001}rad ${orbit.phi}rad ${orbit.radius}m`;
 
-      // 🔥 Force the model to re-render immediately
-      modelViewer.requestRender();
+    // Force render
+    modelViewer.requestRender();
 
-    }).catch((err) => {
-      console.error('Audio play failed:', err);
-      alert("⚠️ Your browser blocked the audio. Please interact with the page first.");
-    });
   } else {
     audio.pause();
     playButton.textContent = '►';
