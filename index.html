@@ -254,16 +254,24 @@
   const modelViewer = document.getElementById('logo-model');
 
   playButton.addEventListener('click', () => {
-    if (audio.paused) {
-      audio.play();
-      playButton.textContent = '❚❚'; // pause icon
-      modelViewer.setAttribute('auto-rotate', ''); // ✅ enable autorotate
-    } else {
-      audio.pause();
-      playButton.textContent = '►'; // play icon
-      modelViewer.removeAttribute('auto-rotate'); // ✅ disable autorotate
-    }
-  });
+  if (audio.paused) {
+    audio.play();
+    playButton.textContent = '❚❚'; // pause icon
+
+    // Enable autorotate and force immediate start
+    modelViewer.setAttribute('auto-rotate', '');
+    modelViewer.setAttribute('rotation-per-second', '90deg');
+
+    // Force re-render / wake up the animation loop
+    const orbit = modelViewer.getCameraOrbit();
+    modelViewer.cameraOrbit = `${orbit.theta + 0.001}rad ${orbit.phi}rad ${orbit.radius}m`;
+  } else {
+    audio.pause();
+    playButton.textContent = '►';
+    modelViewer.removeAttribute('auto-rotate');
+  }
+});
+
 
   // Revert when audio ends
   audio.addEventListener('ended', () => {
