@@ -260,6 +260,12 @@
 
     // Enable autorotate and force immediate start
     modelViewer.setAttribute('auto-rotate', '');
+modelViewer.setAttribute('rotation-per-second', '90deg'); // Optional: make it faster/smoother
+
+// "Nudge" camera slightly to trigger re-render
+const orbit = modelViewer.getCameraOrbit();
+modelViewer.cameraOrbit = `${orbit.theta + 0.001}rad ${orbit.phi}rad ${orbit.radius}m`;
+
     modelViewer.setAttribute('rotation-per-second', '90deg');
 
     // Force re-render / wake up the animation loop
