@@ -210,27 +210,28 @@
   <h1>The softest of launches.<br>The hardest of slaps.</h1> 
 
   <!-- Model and Play Button -->
-  <div class="model-container">
-    <button id="play-button">►</button>
-    <model-viewer
-  id="logo-model"
-  src="logo01.glb"
-  alt="3D Logo"
-  interaction-prompt="none"
-  camera-orbit="0deg 90deg 100m"
-  field-of-view="35deg"
-  exposure="1"
-  disable-zoom
-  onmouseover="this.cameraOrbit = '45deg 90deg 100m';"
-  onmouseout="this.cameraOrbit = '0deg 90deg 100m';">
-</model-viewer>
+<div class="model-container">
+  <button id="play-button">►</button>
+  <model-viewer
+    id="logo-model"
+    src="logo01.glb"
+    alt="3D Logo"
+    interaction-prompt="none"
+    camera-orbit="0deg 90deg 100m"
+    field-of-view="35deg"
+    exposure="1"
+    disable-zoom
+    onmouseover="this.cameraOrbit = '45deg 90deg 100m';"
+    onmouseout="this.cameraOrbit = '0deg 90deg 100m';">
+  </model-viewer>
+</div>
 
+<!-- Audio -->
+<audio id="custom-audio" preload="auto">
+  <source src="tendercide.m4a" type="audio/mp4" />
+  Your browser does not support the audio element.
+</audio>
 
-  <!-- Audio -->
-  <audio id="custom-audio" preload="auto">
-    <source src="tendercide.m4a" type="audio/mp4" />
-    Your browser does not support the audio element.
-  </audio>
 
   <!-- Divider -->
   <div class="divider"></div>
@@ -252,61 +253,56 @@
   const audio = document.getElementById('custom-audio');
   const modelViewer = document.getElementById('logo-model');
 
-playButton.addEventListener('click', () => {
-  if (audio.paused) {
-    audio.play();
-    playButton.textContent = '❚❚';
+  // Declare global state
+  let isSpinning = false;
+  let lastTimestamp = null;
 
-    isSpinning = true;
-    lastTimestamp = null;
-    requestAnimationFrame(rotateModel); // 🔥 start rotation immediately
+  function rotateModel(timestamp) {
+    if (!isSpinning) return;
+    if (!lastTimestamp) lastTimestamp = timestamp;
 
-  } else {
-    audio.pause();
+    const delta = timestamp - lastTimestamp;
+    lastTimestamp = timestamp;
+
+    const orbit = modelViewer.getCameraOrbit();
+    const degreesPerMs = 0.05; // Adjust for rotation speed
+
+    const newTheta = orbit.theta + degreesPerMs * delta;
+
+    modelViewer.cameraOrbit = `${newTheta}rad ${orbit.phi}rad ${orbit.radius}m`;
+    modelViewer.requestRender();
+
+    requestAnimationFrame(rotateModel);
+  }
+
+  playButton.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.play();
+      playButton.textContent = '❚❚';
+      isSpinning = true;
+      lastTimestamp = null;
+      requestAnimationFrame(rotateModel); // Start spinning immediately
+    } else {
+      audio.pause();
+      playButton.textContent = '►';
+      isSpinning = false;
+    }
+  });
+
+  // Stop spinning when audio ends
+  audio.addEventListener('ended', () => {
     playButton.textContent = '►';
     isSpinning = false;
-  }
-});
+  });
 
-
-  // Revert when audio ends
-  audio.addEventListener('ended', () => {
-  playButton.textContent = '►';
-  isSpinning = false;
-});
-
-
+  // Reset camera to original position after interaction
   let resetTimeout;
-
-  // Triggered when user starts interacting
   modelViewer.addEventListener('camera-change', () => {
     clearTimeout(resetTimeout);
     resetTimeout = setTimeout(() => {
       modelViewer.cameraOrbit = '0deg 90deg 100m';
     }, 2000);
   });
-
-    let isSpinning = false;
-let lastTimestamp = null;
-
-function rotateModel(timestamp) {
-  if (!isSpinning) return;
-  if (!lastTimestamp) lastTimestamp = timestamp;
-
-  const delta = timestamp - lastTimestamp;
-  lastTimestamp = timestamp;
-
-  const orbit = modelViewer.getCameraOrbit();
-  const degreesPerMs = 0.05; // adjust this for rotation speed (higher = faster)
-
-  const newTheta = orbit.theta + degreesPerMs * delta;
-
-  modelViewer.cameraOrbit = `${newTheta}rad ${orbit.phi}rad ${orbit.radius}m`;
-  modelViewer.requestRender();
-
-  requestAnimationFrame(rotateModel);
-}
-
 </script>
 
 
