@@ -254,30 +254,28 @@
   const modelViewer = document.getElementById('logo-model');
 
   playButton.addEventListener('click', () => {
-  if (audio.paused) {
-    audio.play();
-    playButton.textContent = '❚❚'; // pause icon
+    if (audio.paused) {
+      audio.play().then(() => {
+        playButton.textContent = '❚❚';
 
-    // Enable autorotate and force immediate start
-    modelViewer.setAttribute('auto-rotate', '');
-modelViewer.setAttribute('rotation-per-second', '90deg'); // Optional: make it faster/smoother
+        // Enable autorotate and force immediate start
+        modelViewer.setAttribute('auto-rotate', '');
+        modelViewer.setAttribute('rotation-per-second', '90deg');
 
-// "Nudge" camera slightly to trigger re-render
-const orbit = modelViewer.getCameraOrbit();
-modelViewer.cameraOrbit = `${orbit.theta + 0.001}rad ${orbit.phi}rad ${orbit.radius}m`;
+        // "Nudge" camera slightly to trigger re-render
+        const orbit = modelViewer.getCameraOrbit();
+        modelViewer.cameraOrbit = `${orbit.theta + 0.001}rad ${orbit.phi}rad ${orbit.radius}m`;
 
-    modelViewer.setAttribute('rotation-per-second', '90deg');
-
-    // Force re-render / wake up the animation loop
-    const orbit = modelViewer.getCameraOrbit();
-    modelViewer.cameraOrbit = `${orbit.theta + 0.001}rad ${orbit.phi}rad ${orbit.radius}m`;
-  } else {
-    audio.pause();
-    playButton.textContent = '►';
-    modelViewer.removeAttribute('auto-rotate');
-  }
-});
-
+      }).catch((err) => {
+        console.error('Audio play failed:', err);
+        alert("⚠️ Your browser blocked the audio. Please interact with the page first.");
+      });
+    } else {
+      audio.pause();
+      playButton.textContent = '►';
+      modelViewer.removeAttribute('auto-rotate');
+    }
+  });
 
   // Revert when audio ends
   audio.addEventListener('ended', () => {
@@ -285,19 +283,14 @@ modelViewer.cameraOrbit = `${orbit.theta + 0.001}rad ${orbit.phi}rad ${orbit.rad
     modelViewer.removeAttribute('auto-rotate');
   });
 
-    //const modelViewer = document.getElementById('logo-model');
-
   let resetTimeout;
 
   // Triggered when user starts interacting
   modelViewer.addEventListener('camera-change', () => {
-    // Clear any previous timeout
     clearTimeout(resetTimeout);
-
-    // Set timeout to reset camera after 2 seconds of no interaction
     resetTimeout = setTimeout(() => {
-      modelViewer.cameraOrbit = '0deg 90deg 100m'; // Replace with your default orbit
-    }, 2000); // 2000ms = 2 seconds
+      modelViewer.cameraOrbit = '0deg 90deg 100m';
+    }, 2000);
   });
 </script>
 
