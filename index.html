@@ -253,29 +253,33 @@
   const audio = document.getElementById('custom-audio');
   const modelViewer = document.getElementById('logo-model');
 
-  playButton.addEventListener('click', () => {
-    if (audio.paused) {
-      audio.play().then(() => {
-        playButton.textContent = '❚❚';
+ playButton.addEventListener('click', () => {
+  if (audio.paused) {
+    audio.play().then(() => {
+      playButton.textContent = '❚❚';
 
-        // Enable autorotate and force immediate start
-        modelViewer.setAttribute('auto-rotate', '');
-        modelViewer.setAttribute('rotation-per-second', '90deg');
+      // Enable autorotate
+      modelViewer.setAttribute('auto-rotate', '');
+      modelViewer.setAttribute('rotation-per-second', '90deg');
 
-        // "Nudge" camera slightly to trigger re-render
-        const orbit = modelViewer.getCameraOrbit();
-        modelViewer.cameraOrbit = `${orbit.theta + 0.001}rad ${orbit.phi}rad ${orbit.radius}m`;
+      // Nudge camera to force immediate change
+      const orbit = modelViewer.getCameraOrbit();
+      modelViewer.cameraOrbit = `${orbit.theta + 0.001}rad ${orbit.phi}rad ${orbit.radius}m`;
 
-      }).catch((err) => {
-        console.error('Audio play failed:', err);
-        alert("⚠️ Your browser blocked the audio. Please interact with the page first.");
-      });
-    } else {
-      audio.pause();
-      playButton.textContent = '►';
-      modelViewer.removeAttribute('auto-rotate');
-    }
-  });
+      // 🔥 Force the model to re-render immediately
+      modelViewer.requestRender();
+
+    }).catch((err) => {
+      console.error('Audio play failed:', err);
+      alert("⚠️ Your browser blocked the audio. Please interact with the page first.");
+    });
+  } else {
+    audio.pause();
+    playButton.textContent = '►';
+    modelViewer.removeAttribute('auto-rotate');
+  }
+});
+
 
   // Revert when audio ends
   audio.addEventListener('ended', () => {
